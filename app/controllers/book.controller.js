@@ -8,7 +8,8 @@ const User = db.user;
 
 
 exports.getBooksFromGoogleByKeyWord = (req, res) => {
-
+  // get the search keyword from the request 
+  // if the keyword is empty, response with empty of not send respnd with empty array and status code 200 and message
   const searchKeyword = req.body.searchKeywords;
   if (!searchKeyword) {
     res.status(200).send({
@@ -17,24 +18,30 @@ exports.getBooksFromGoogleByKeyWord = (req, res) => {
     });
   }
 
-  const searchKeywordWithPlus = searchKeyword.replace(/\s/g, "+");
+    const searchKeywordWithPlus = searchKeyword.replace(/\s/g, "+");
+      // axios get request to google books api
   axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchKeywordWithPlus).then(response => {
     let numberOfBooks = response.data.totalItems;
+    // if there are no books found
     if (numberOfBooks === 0) {
       res.status(200).json({
         message: "No books found"
       });
     } else {
+        // if there are books found
+        // map through the response and set the book data
       const books = response.data.items.map(book => {
         const bookData = {
           id: book.id,
           title: book.volumeInfo.title,
           subtitle: book.volumeInfo.subtitle,
+        // if authors is a list, join the authors with a comma or affect as it is 
           authors: book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : book.volumeInfo.authors,
           publisher: book.volumeInfo.publisher,
           publishedDate: book.volumeInfo.publishedDate,
           description: book.volumeInfo.description,
           pageCount: book.volumeInfo.pageCount,
+        // if categories is a list, convert to string or affect as it is
           categories: book.volumeInfo.categories ? book.volumeInfo.categories.join(", ") : book.volumeInfo.categories,
           averageRating: book.volumeInfo.averageRating,
           ratingsCount: book.volumeInfo.ratingsCount
