@@ -77,3 +77,23 @@ exports.getBooksFromGoogleByKeyWord = (req, res) => {
     }
   });
 }
+
+// get all books
+exports.getAllBooks = (req, res) => {
+  // find all books
+  Book.findAll().then(books => {
+    // if there are no books
+    if (books.length === 0) {
+      res.status(200).json({
+        message: "No books found"
+      });
+    } else {
+      // if there are books
+      // send the books
+      res.status(200).json({
+        message: "Books found",
+        books: books
+      });
+    }
+  });
+}
