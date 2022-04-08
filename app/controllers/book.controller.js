@@ -1,4 +1,6 @@
 const { default: axios } = require("axios");
+const jsonwebtoken = require("jsonwebtoken");
+const config = require("../config/auth.config");
 
 // import book model
 const db = require("../models");
