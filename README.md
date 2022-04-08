@@ -20,7 +20,7 @@
 ## equipe : 
     Takwa Belghith : 
     Melissa Ben : 
-    
+    Laura : 
 ## Installation
 Pour installer le projet il suffit de telecharger le code source
 puis faire la reglement de la base de donnee dans le fichier : app/config/db.config.js ,
@@ -40,12 +40,12 @@ l'application contient 3 Acteurs :
 -Moderateur
 -utilisateur
 
-donc j'ai utiliser:
-un middleware pour la verification du signUp (' username et l'email )
+
+-un middleware pour la verification du signUp (' username et l'email )
 et un autre pour la verification authentication and authorization ( user | moderator | admin )
 
 ## tech
 
-j'ai utiliser le JsonWebToken pour la securité des utilisation des apis 
+utilisation du JsonWebToken pour la securité des utilisation des apis 
 le code et tres bien organisé dans un format logique et en utilisant des nom des variables logiques et claires 
 
