@@ -78,6 +78,36 @@ exports.getBooksFromGoogleByKeyWord = (req, res) => {
   });
 }
 
+exports.deleteBookById = (req, res) => {
+  // get the book id from the request
+  const bookId = req.params.id;
+  // find the book by id
+  Book.findOne({
+    where: {
+      id: bookId
+    }
+  }).then(book => {
+    // if the book is not found
+    if (!book) {
+      res.status(200).json({
+        message: "Book not found"
+      });
+    } else {
+      // if the book is found
+      // delete the book
+      Book.destroy({
+        where: {
+          id: bookId
+        }
+      }).then(book => {
+        res.status(200).json({
+          message: "Book deleted"
+        });
+      });
+    }
+  });
+}
+
 // get all books
 exports.getAllBooks = (req, res) => {
   // find all books
