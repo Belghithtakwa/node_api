@@ -29,5 +29,32 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.getAllBooks
   );
+  
+   // users can add book to their wishlist
+   app.post(
+    "/api/book/addtowishlist",
+    [authJwt.verifyToken],
+    controller.addBookToWishList
+  );
 
+  // users can view their wishlist
+  app.get(
+    "/api/book/wishlist",
+    [authJwt.verifyToken],
+    controller.getWishList
+  );
+
+  // users can delete book from their wishlist
+  app.delete(
+    "/api/book/deletewishlist/:bookId",
+    [authJwt.verifyToken],
+    controller.deleteBookFromWishList
+  );
+
+  // users can view book by id
+  app.get(
+    "/api/book/:id",
+    [authJwt.verifyToken],
+    controller.getBookById
+  );
   };
