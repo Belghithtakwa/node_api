@@ -11,7 +11,6 @@ An API is available to get the books. The documentation is available on : https:
 
 # Team
 
-- Laura Pineau : laura.pineau@mail-ecv.fr
 - Melissa Benmeziane : melissa.benmeziane@mail-ecv.fr
 - Takwa Belghith : takwa.belghith@mail-ecv.fr
 
