@@ -24,6 +24,7 @@ exports.getBooksFromGoogleByKeyWord = (req, res) => {
       // axios get request to google books api
   axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchKeywordWithPlus).then(response => {
     let numberOfBooks = response.data.totalItems;
+    let books = [];
     // if there are no books found
     if (numberOfBooks === 0) {
       res.status(200).json({
@@ -166,6 +167,47 @@ exports.addBookToWishList = (req, res) => {
       });
     }
   });
+}
+
+// users can get their wishlist
+exports.getWishList = (req, res) => {
+  // get the token from the request cookie
+  const token = req.cookies.token;
+  // get the payload from the token and get the user id  secret or public key must be provided from the auth.config.js
+  const payload = jsonwebtoken.verify(token, config.secret);
+  const userId = payload.id;
+  // find the user by id
+  User.findOne({
+    where: {
+      id: userId
+    }
+  }).then(user => {
+    // if the user is not found
+    if (!user) {
+      res.status(200).json({
+        message: "User not found"
+      });
+    } else {
+      // if the user is found
+      // get the user's wishlist
+      user.getBooks().then(books => {
+        // if there are no books
+        if (books.length === 0) {
+          res.status(200).json({
+            message: "No books found"
+          });
+        } else {
+          // if there are books
+          // send the books
+          res.status(200).json({
+            message: "Books found",
+            books: books
+          });
+        }
+      });
+    }
+  });
+}
 
 // users can remove a book from their wishlist
 exports.deleteBookFromWishList = (req, res) => {
@@ -217,68 +259,27 @@ exports.deleteBookFromWishList = (req, res) => {
   });
 }
 
-// users can get their wishlist
-exports.getWishList = (req, res) => {
-  // get the token from the request cookie
-  const token = req.cookies.token;
-  // get the payload from the token and get the user id  secret or public key must be provided from the auth.config.js
-  const payload = jsonwebtoken.verify(token, config.secret);
-  const userId = payload.id;
-  // find the user by id
-  User.findOne({
+exports.getBookById = (req, res) => {
+  // get the book id from the request
+  const bookId = req.params.id;
+  // find the book by id
+  Book.findOne({
     where: {
-      id: userId
+      id: bookId
     }
-  }).then(user => {
-    // if the user is not found
-    if (!user) {
+  }).then(book => {
+    // if the book is not found
+    if (!book) {
       res.status(200).json({
-        message: "User not found"
+        message: "Book not found"
       });
     } else {
-      // if the user is found
-      // get the user's wishlist
-      user.getBooks().then(books => {
-        // if there are no books
-        if (books.length === 0) {
-          res.status(200).json({
-            message: "No books found"
-          });
-        } else {
-          // if there are books
-          // send the books
-          res.status(200).json({
-            message: "Books found",
-            books: books
-          });
-        }
+      // if the book is found
+      // send the book
+      res.status(200).json({
+        message: "Book found",
+        book: book
       });
     }
   });
-}
-
-  exports.getBookById = (req, res) => {
-    // get the book id from the request
-    const bookId = req.params.id;
-    // find the book by id
-    Book.findOne({
-      where: {
-        id: bookId
-      }
-    }).then(book => {
-      // if the book is not found
-      if (!book) {
-        res.status(200).json({
-          message: "Book not found"
-        });
-      } else {
-        // if the book is found
-        // send the book
-        res.status(200).json({
-          message: "Book found",
-          book: book
-        });
-      }
-    });
-  }
 }
