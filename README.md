@@ -14,40 +14,14 @@ An API is available to get the books. The documentation is available on : https:
 - Node js
 - Express
 - Mysql
+- JWT: The JsonWebToken for API security
+- Axios
+- Sequelize
 
 # Dependencies
 
 - nodeJs 12.13.0 et +
 - npm ou yarn ou pnpm
-
-# Installation
-
-- Step 1
-  Clone Project : git clone git@github.com:Belghithtakwa/node_api.git
-- Step 2
-  Install Packages : npm i
-- Step 3
-  Start Project : npm start
-
-## Information :
-
-the application contains 3 Actors:
--Admin
--Moderator
--user
-
-we used :
-
-# MiddleWares
-
-- Middleware for the verification of the signUp ('username & email )
-- Middleware for verification authentication and authorization( user | moderator | admin )
-
-## tech
-
--JWT: The JsonWebToken for API security
--Axios
--Sequelize
 
 ## Project Dependencies
 
@@ -61,6 +35,28 @@ we used :
 - mysql2
 - semver
 - sequelize
+
+# Installation
+
+- Step 1
+  Clone Project : git clone git@github.com:Belghithtakwa/node_api.git
+- Step 2
+  Install Packages : npm i
+- Step 3
+  Start Project : npm start
+
+## Information :
+
+the application contains 3 Actors:
+
+- Admin
+- Moderator
+- user
+
+we used # MiddleWares :
+
+- Middleware for the verification of the signUp ('username & email )
+- Middleware for verification authentication and authorization( user | moderator | admin )
 
 ## The project includes the following endpoints
 
