@@ -1,5 +1,10 @@
 # Projetnodejs-books
 
+# Description :
+
+A book library API, built with Express, Node.js, Sequelize and MySQL.
+An application that allows you to view, modify, add or delete books (CRUD).
+
 # API documentation
 
 An API is available to get the books. The documentation is available on : https://developers.google.com/books/.
