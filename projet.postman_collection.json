@@ -82,7 +82,7 @@
 			"response": []
 		},
 		{
-			"name": "signIn admin avec vrai password",
+			"name": "signIn admin with a password",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -112,7 +112,7 @@
 			"response": []
 		},
 		{
-			"name": "signIn user1 avec vrai password",
+			"name": "signIn user1 with a password",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -142,7 +142,7 @@
 			"response": []
 		},
 		{
-			"name": "test des authentication and authorization user | moderator | admin",
+			"name": "authentication test and authorization user | moderator | admin",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -284,7 +284,7 @@
 			"response": []
 		},
 		{
-			"name": "get all books  :user roles privilages ( obly availble in data base )",
+			"name": "get all books  :user roles privilages ( only availble in data base )",
 			"request": {
 				"method": "GET",
 				"header": [],
