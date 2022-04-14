@@ -7,7 +7,7 @@ An application that allows you to view, modify, add or delete books (CRUD).
 
 # API documentation
 
-An API is available to get the books. The documentation is available on : https://developers.google.com/books/.
+- An API is available to get the books. The documentation is available on : https://developers.google.com/books/.
 
 # Team
 
@@ -73,9 +73,9 @@ we used # MiddleWares :
 - GET - Authentification test & authorisation user | moderator | admin
 - GET Book info by ID
 - POST - the admin can get books from google and set them on table books
-- admin can delete users
+- Admin can delete users
 - Delete Book by id | admin restriction
 - Get all books :user roles privilages
 - POST - Add books to wishlist
 - Get - user can view his wish list
-- user can delete a book from his wish list
+- User can delete a book from his wish list
